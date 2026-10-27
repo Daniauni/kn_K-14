@@ -1,0 +1,34 @@
+1.1
+git checkout -b bugfix - створили нову гілку bugfix від поточного feature та перейшли до неї
+git add fix.cpp ; git commit -m 'fix feature bug' — додали файл та зафіксували виправлення помилки в гілці bugfix   
+git checkout feature — вийшли з неї повернувщись назад
+git add app_icon.png; git commit -m 'add app icon' — створили файл png та створили новий коміт на гілці feature   
+git checkout bugfix — зайшли в гілку bugfix   
+git add fix.cpp ; git commit -refactor fix.cpp' — зберегли зміни після рефакторингу файлу fix.cpp на гілці bugfix   
+git rebase feature — перенпесли гілку bugfix на гілку feature   
+git checkout feature — зайшли в гілку feature   
+git merge bugfix — виконали об'єднання гілки bugfix в feature
+git checkout main — перейшли на головну гілку main   
+git merge feature — об'єднали гілку feature у main, об'єднавши всю історію в єдину гілку
+
+1.2
+Результат залишиться тим самим, так як на момент 11 рядка feature i bugfix будуть вказувати на один і той самий коміт
+тому результат буде такий самий
+
+2.1 
+Загального вигляду структура не поміняє, але гілка main переміститься в гілку featrue і коміти main будуть зверху. 
+Гілка feature залишиться на своєму місці
+
+2.2
+Main вже був змінений, і якщо б ми спробували б перенести. featrue в вже змінений main то він міг би зациклитись чи
+продублюватись через те що сам main був в featrue, а коміти main були в іншому порядку
+
+2.3
+git checkout main - перейти на гілку main   
+git reset --hard ORIG_HEAD — відкотити стан гілки main до моменту перед помилковим rebase(P.S допоміг штучний інтелект чому саме це потрібно (розібрав чому саме так))
+git checkout feature — перейти на гілку feature
+git rebase main правильне розміщенн комітів feature на main
+
+2.4
+Так можна, якщо rebase зупинився то ми можемо зробити крок назад, з задопомогою команди git rebase --abort
+(дана команда зупинить процес і поверне репозиторій у початкий варіант(P.S - чат підсказав, яку краще функцію підібрати))
